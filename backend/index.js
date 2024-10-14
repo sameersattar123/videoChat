@@ -9,7 +9,7 @@ const io = require("socket.io")(server, {
 });
 
 app.use(cors());
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 app.get('/', (req, res) => {
         res.send('Hello World');
 });
