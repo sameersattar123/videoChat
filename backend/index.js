@@ -1,15 +1,28 @@
-const app = require("express")();
+const express = require("express");
+const app = express()
 const server = require("http").createServer(app);
 const cors = require("cors");
+const dotenv = require('dotenv')
+const path = require('path')
+
 const io = require("socket.io")(server, {
     cors: {
         origin: "*", 
-        methods: ["GET", "POST"]
-    }
+        methods: ["GET", "POST"]    
+    } 
 });
 
+dotenv.config()
 app.use(cors());
-const PORT = 8080;
+const basePath = '';
+
+app.use(basePath + "/", express.static(path.resolve(__dirname + "/build")));
+
+app.get("*", (request, response) => {
+  response.sendFile(path.resolve(__dirname + "/build/index.html"));
+});
+
+const PORT = process.env.PORT;
 app.get('/', (req, res) => {
         res.send('Hello World');
 });
