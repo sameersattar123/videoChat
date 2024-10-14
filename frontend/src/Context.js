@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
 const SocketContext = createContext();
-const socket = io('http://localhost:8080');
+const socket = io('https://stellar-stardust-4d44cb.netlify.app:8080');
 const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
